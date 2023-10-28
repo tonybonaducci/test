@@ -51,6 +51,8 @@ typedef	struct s_fractal
 	double	hypo_spin;
 	t_img	img;
 	int		iterations;
+	double	shift_x;
+	double	shift_y;
 
 } t_fractal;
 
