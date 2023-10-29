@@ -20,7 +20,8 @@ int	main(int ac, char **av)
 		|| ac == 4 && !ft_strncmp(av[1], "julia", 5))
 	{
 		fractal.name = av[1];
-		//it's right bby let's go
+		fractal.julia_x = atodbl(av[2]);
+		fractal.julia_y = atodbl(av[3]);
 		fractal_init(&fractal);
 		fractal_render(&fractal);
 		mlx_loop(fractal.mlx_connection); mlx_ptr:

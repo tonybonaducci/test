@@ -20,8 +20,8 @@ void pixel_calc(int x, int y, t_fractal *fractal)
 	z.x = 0.0;
 	z.y = 0.0;
 
-	c.x = scale(x, -2, +2, 0, WIDTH) +;
-	c.y = scale(y, +2, -2, 0, HEIGHT);
+	c.x = (scale(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
+	c.y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
 	while (i < fractal->iterations)
 	{
 		z = sum_complex(square_complex(z), c);
