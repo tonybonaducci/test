@@ -11,9 +11,9 @@ void	set_check(t_fractal *fractal, char **av)
 	else if ((!ft_strncmp(av[1], "julia", 5)))
 		fractal->id = JULIA;
 	else if ((!ft_strncmp(av[1], "tricorn", 7)))
-	{
 		fractal->id = TRICORN;
-	}
+	else if ((!ft_strncmp(av[1], "burning_ship", 12)))
+		fractal->id = BURNING_SHIP;
 	else
 		error_exit();
 }

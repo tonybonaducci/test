@@ -64,13 +64,22 @@ void	fractal_render(t_fractal *fractal)
 				pixel_calc(x, y, fractal);
 		}
 	}
-	else
+	else if(fractal -> id == TRICORN)
 	{
 		while (++y < HEIGHT)
 		{
 			x = -1;
 			while (++x < WIDTH)
 				tricorn_calc(x, y, fractal);
+		}
+	}
+	else if(fractal -> id == BURNING_SHIP)
+	{
+		while (++y < HEIGHT)
+		{
+			x = -1;
+			while (++x <WIDTH)
+				burning_ship_calc(x, y, fractal);
 		}
 	}
 	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window, fractal->img.img_ptr, 0, 0);

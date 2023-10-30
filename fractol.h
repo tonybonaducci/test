@@ -17,6 +17,7 @@
 #define MANDELBROT 1
 #define JULIA 2
 #define	TRICORN 3
+#define BURNING_SHIP 4
 
 /*
 		******* BORING COLORS *****
@@ -99,7 +100,7 @@ static void	malloc_error(void);
 void	fractal_render(t_fractal *fractal);
 void	tricorn_calc(int x, int y, t_fractal *fractal);
 void	my_pixel_put(int x, int y, t_img *img, int rgb);
-
+void burning_ship_calc(int x, int y, t_fractal *fractal);
 /*
 ********	Math functions      *********
 */
