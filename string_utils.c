@@ -63,3 +63,12 @@ double	atodbl(char *s)
 	}
 	return ((integer_part + fractional_part) * sign);
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && (unsigned char)c != *s)
+		s++;
+	if ((unsigned char)c == *s)
+		return ((char *)s);
+	return (0);
+}

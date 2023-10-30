@@ -9,9 +9,14 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-#define ERROR_MESSAGE "wrong name dummy"
+#define ERROR_MESSAGE "Required inputs were not met exiting the program, available fractals are 'mandelbrot', 'julia'."
 #define WIDTH 800
 #define HEIGHT 800
+/*		SETS		*/
+
+#define MANDELBROT 1
+#define JULIA 2
+#define	TRICORN 3
 
 /*
 		******* BORING COLORS *****
@@ -24,13 +29,18 @@
 /*    
 		****** FUN COLORS ******
 */
-#define WACKY_PINK 0xFF6EC7    // A vibrant and wacky pink
-#define WACKY_GREEN 0x56FF00   // A wild and eye-popping green
-#define WACKY_ORANGE 0xFFA200  // A bold and crazy orange
-#define SCARY_PURPLE 0x8B00FF  // A mysterious and haunting purple
 
-// A combination of wacky and scary for genre-defining effects
-#define GENRE_DEFINING_COLOR 0xF08080  // A unique and genre-defining color
+#define PSYCHEDELIC_PURPLE 0xA020F0  // A bright purple color
+#define PSYCHEDELIC_YELLOW 0xFFFF00  // A vibrant yellow color
+#define PSYCHEDELIC_PINK 0xFF1493    // A hot pink color
+#define PSYCHEDELIC_CYAN 0x00FFFF    // A bright cyan color
+#define PSYCHEDELIC_ORANGE 0xFFA500  // A fiery orange color
+#define PSYCHEDELIC_GREEN 0x00FF00
+#define WACKY_PINK 0xFF6EC7
+#define WACKY_GREEN 0x56FF00
+#define WACKY_ORANGE 0xFFA200
+#define SCARY_PURPLE 0x8B00FF
+#define GENRE_DEFINING_COLOR 0xF08080
 
 
 typedef struct s_img
@@ -51,12 +61,12 @@ typedef	struct s_fractal
 	double	hypo_spin;
 	t_img	img;
 	int		iterations;
+	int		id;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
 	double	julia_x;
 	double	julia_y;
-
 } t_fractal;
 
 
@@ -74,6 +84,7 @@ typedef struct s_complex
 double	atodbl(char *s);
 void	putstr_fd(char *s, int fd);
 int		ft_strncmp(char *s1, char *s2, int n);
+char	*ft_strchr(const char *s, int c);
 
 
 /*
@@ -86,11 +97,13 @@ static void	malloc_error(void);
 ********	Render Functions 	********
 */
 void	fractal_render(t_fractal *fractal);
+void	tricorn_calc(int x, int y, t_fractal *fractal);
+void	my_pixel_put(int x, int y, t_img *img, int rgb);
 
 /*
 ********	Math functions      *********
 */
-double	scale(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+double	scale(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 
@@ -100,7 +113,7 @@ t_complex	sum_complex(t_complex z1, t_complex z2);
 int	key_handler(int keysym, t_fractal *fractal);
 int	close_handler(t_fractal *fractal);
 int	mouse_handler(int button, int x, int y, t_fractal *fractal);
-
+void error_exit(void);
 
 
 #endif

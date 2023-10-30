@@ -7,11 +7,11 @@
 
 void	data_init(t_fractal *fractal)
 {
-	fractal->hypo_spin = 4;
-	fractal->iterations = 42;
-	fractal->shift_x = 0.0;
-	fractal->shift_y = 0.0;
-	fractal->zoom = 1.0;
+		fractal->hypo_spin = 4;
+		fractal->iterations = 10;
+		fractal->shift_x = 0.0;
+		fractal->shift_y = 0.0;
+		fractal->zoom = 1.0;
 }
 
 void	event_init(t_fractal *fractal)
