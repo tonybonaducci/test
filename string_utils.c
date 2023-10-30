@@ -1,5 +1,16 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmenezes <rmenezes@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/30 15:00:01 by rmenezes          #+#    #+#             */
+/*   Updated: 2023/10/30 16:05:06 by rmenezes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "fractol.h"
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {
@@ -11,14 +22,9 @@ int	ft_strncmp(char *s1, char *s2, int n)
 		++s2;
 		--n;
 	}
-	// chars are basically 1 byte int
-	// 🚨 when 0, strings are equal !! 🚨
 	return (*s1 - *s2);
 }
 
-/*
- * RECURSION
-*/
 void	putstr_fd(char *s, int fd)
 {
 	if (NULL == s || fd < 0)
@@ -30,21 +36,15 @@ void	putstr_fd(char *s, int fd)
 	}
 }
 
-/*
- * ALPHA TO DOUBLE
- * similar to atoi, but dealing with floats
- * takes the cmnd line args and
- * converts to long double (typedef ldbl)
-*/
 double	atodbl(char *s)
 {
-	long	integer_part;
-	double	fractional_part;
+	long	whole;
+	double	decim;
 	double	pow;
 	int		sign;
 
-	integer_part = 0;
-	fractional_part = 0;
+	whole = 0;
+	decim = 0;
 	sign = +1;
 	pow = 1;
 	while ((*s >= 9 && *s <= 13) || 32 == *s)
@@ -53,15 +53,15 @@ double	atodbl(char *s)
 		if ('-' == *s++)
 			sign = -sign;
 	while (*s != '.' && *s)
-		integer_part = (integer_part * 10) + (*s++ - 48);
+		whole = (whole * 10) + (*s++ - 48);
 	if ('.' == *s)
 		++s;
 	while (*s)
 	{
 		pow /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * pow;
+		decim = decim + (*s++ - 48) * pow;
 	}
-	return ((integer_part + fractional_part) * sign);
+	return ((whole + decim) * sign);
 }
 
 char	*ft_strchr(const char *s, int c)
